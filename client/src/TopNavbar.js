@@ -15,6 +15,9 @@ const TopNavbar = (props) => {
         props.showNavItems ?
           <Navbar.Collapse>
             <Nav pullRight>
+              <NavItem onClick={props.onSignIn}>Sign In</NavItem>
+            </Nav>
+            <Nav pullRight>
               <NavItem onClick={props.onSignOut}>Sign Out</NavItem>
             </Nav>
             <Nav pullRight>

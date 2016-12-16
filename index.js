@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+// Require our custom strategies
+require('./services/passport');
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/todo-list-app')
   .then(() => console.log('[mongoose] Connected to MongoDB'))
@@ -17,6 +20,12 @@ const authenticationRoutes = require('./routes/authentication');
 
 app.use(bodyParser.json());
 app.use('/api', authenticationRoutes);
+
+const authStrategy = passport.authenticate('authStrategy', { session: false });
+
+app.get('/api/secret', authStrategy, function(req, res, next) {
+  res.send(`The current user is ${req.user.username}`);
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

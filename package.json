@@ -1,19 +1,26 @@
 {
   "name": "auth-starter",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nf start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "foreman": "^2.0.0",
+    "nodemon": "^1.11.0",
+    "passport-jwt": "^2.2.1",
+    "react-scripts": "0.8.4"
   },
   "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.20.0",
     "bcrypt": "^0.8.7",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
@@ -22,6 +29,19 @@
     "mongoose": "^4.6.8",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
-    "passport-local": "^1.0.0"
-  }
+    "passport-local": "^1.0.0",
+    "react": "^15.4.1",
+    "react-bootstrap": "^0.30.7",
+    "react-dom": "^15.4.1",
+    "react-router": "^4.0.0-alpha.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salvadorrodriguezruvalcaba/final-project-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/salvadorrodriguezruvalcaba/final-project-starter/issues"
+  },
+  "homepage": "https://github.com/salvadorrodriguezruvalcaba/final-project-starter#readme",
+  "description": ""
 }
