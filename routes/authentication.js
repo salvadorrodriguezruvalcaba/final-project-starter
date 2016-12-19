@@ -5,7 +5,9 @@ const bcrypt = require('bcrypt-nodejs');
 
 const jwt = require('jwt-simple');
 const passport = require('passport');
-const signinStrategy = passport.authenticate('signinStrategy', { session: false });
+const signinStrategy = passport.authenticate('signinStrategy', {
+      session: false
+});
 
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
@@ -60,7 +62,7 @@ router.post('/signin', signinStrategy, function(req, res, next) {
 
 router.post('/signup', function(req, res, next) {
 
-  const { username, password } = req.body;
+  const { nickname, username, password } = req.body;
 
   // If no username or password was supplied return an error
   if (!username || !password) {
@@ -87,7 +89,7 @@ router.post('/signup', function(req, res, next) {
           }
 
           // Create a new user with the supplied username, and the hashed password
-          const user = new User({ username, password: hashedPassword });
+          const user = new User({ nickname, username, password: hashedPassword });
 
           // Save and return the user
           user.save()

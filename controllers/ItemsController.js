@@ -2,6 +2,13 @@ const ItemModel = require('../models/ItemModel');
 const ListModel = require('../models/ListModel');
 
 module.exports = {
+  list(req, res, next) {
+    ItemModel.find({ user: req.user._id, list: req.body.list })
+      .exec()
+      .then(ItemList => res.json(ItemList))
+      .catch(next);
+  },
+
   create(req, res, next) {
     const listId = req.body.list;
     const userId = req.user._id;

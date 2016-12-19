@@ -3,6 +3,9 @@ const ItemsController = require('../controllers/ItemsController');
 
 const router = express.Router();
 
+// Get all Items in the Lists
+router.get('/', ItemsController.list);
+
 // Create a new Item
 router.post('/', ItemsController.create);
 

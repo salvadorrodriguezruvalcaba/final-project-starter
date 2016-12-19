@@ -5,6 +5,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const axios = require('axios');
+
+const port = process.env.PORT || 3001;
 
 // Require our custom strategies
 require('./services/passport');
@@ -18,23 +21,35 @@ const app = express();
 
 const authenticationRoutes = require('./routes/authentication');
 const listRoutes = require('./routes/list');
-const itemRoute = require('./routes/item');
-const authStrategy = passport.authenticate('authStrategy', { session: false });
+const itemRoutes = require('./routes/item');
+// const UsersRoutes = require('./routes/UserRoutes');
+const authStrategy = passport.authenticate('authStrategy', {
+      session: false
+});
 
 app.use(bodyParser.json());
 app.use('/api', authenticationRoutes);
 app.use('/api/lists', authStrategy, listRoutes);
-app.use('/api/items', authStrategy, itemRoute);
+app.use('/api/items', authStrategy, itemRoutes);
+// app.use('/api/secret', authStrategy, UsersRoutes);
 
 app.use((err, req, res, next) => {
   return res.status(500).send(`Error: ${err}`);
 });
 
 app.get('/api/secret', authStrategy, function(req, res, next) {
-  res.send(`The current user is ${req.user.username}`);
+  res.send(`User: ${req.user.username}`);
 });
 
-const port = process.env.PORT || 3001;
+app.get('/movies', function(req, res, next) {
+    axios.get(`http://www.omdbapi.com/?t=${attribute.title}&plot=short&r=json`)
+    .then(resp => {
+        return res.json(resp.data);
+    })
+    .catch(err => res.json(err));
+});
+
+
 app.listen(port, () => {
   console.log(`Listening on port:${port}`);
 });

@@ -55,11 +55,14 @@ class SignIn extends Component {
           />
         </FormGroup>
 
-        <Button type="submit">
-         Sign In
-       </Button>
+        <Button type="submit">  Sign In </Button>
+
+
       </form>
     );
+
+    // <Button onClick={() => this.props.onNew()}>New User</Button>
+
   }
 }
 

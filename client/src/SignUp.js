@@ -6,6 +6,7 @@ class SignUp extends Component {
     super();
 
     this.state = {
+      nickname: '',
       username: '',
       password: '',
       confirmPassword: '',
@@ -16,6 +17,7 @@ class SignUp extends Component {
     event.preventDefault();
 
     this.props.onSignUp({
+      nickname: this.state.nickname,
       username: this.state.username,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
@@ -34,6 +36,17 @@ class SignUp extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
+        <FormGroup>
+          <ControlLabel>Nickname</ControlLabel>
+          <FormControl
+            type="text"
+            name="nickname"
+            onChange={event => this.handleChange(event)}
+            placeholder="Enter your Nickname"
+            value={this.state.nickname}
+          />
+        </FormGroup>
+
         <FormGroup>
           <ControlLabel>Username</ControlLabel>
           <FormControl

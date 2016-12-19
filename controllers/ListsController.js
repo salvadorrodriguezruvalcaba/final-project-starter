@@ -18,23 +18,23 @@ module.exports = {
       .catch(next);
   },
 
-  // show(req, res, next) {
-  //   ListModel.findOne({
-  //     user: req.user._id,
-  //     _id: req.params.id
-  //   })
-  //     .exec()
-  //     .then(list => res.json(list))
-  //     .catch(next);
-  // },
-
   show(req, res, next) {
-    ListModel.findOne({ user: req.user._id, _id: req.params.id })
-      .populate('items')
+    ListModel.findOne({
+      user: req.user._id,
+      _id: req.params.id
+    })
       .exec()
       .then(list => res.json(list))
       .catch(next);
   },
+
+  // show(req, res, next) {
+  //   ListModel.findOne({ user: req.user._id, _id: req.params.id })
+  //     .populate('items')
+  //     .exec()
+  //     .then(list => res.json(list))
+  //     .catch(next);
+  // },
 
   remove(req, res, next) {
     ListModel.findOneAndRemove({

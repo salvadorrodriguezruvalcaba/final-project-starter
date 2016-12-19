@@ -10,6 +10,7 @@ class Secret extends Component {
     };
   }
 
+
   componentDidMount() {
     axios.get('/api/secret', {
       headers: {
@@ -27,7 +28,11 @@ class Secret extends Component {
 
   render() {
     return (
-      <h1>{this.state.message}</h1>
+      <div>
+        <h1>Current user information</h1>
+        <br></br>
+        <h3>{this.state.message}</h3>
+      </div>
     );
   }
 }
